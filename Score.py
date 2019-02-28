@@ -1,6 +1,3 @@
-import Read
-
-
 def score(slides):
     s = 0
     for i in range(0, len(slides) - 1):
@@ -16,11 +13,3 @@ def scoreTwoSlides(slide1, slide2):
 
     return min(inter, s1, s2)
 
-
-def main():
-    photos = Read.read("data/a_example.txt")
-    print(score(photos))
-
-
-if __name__ == '__main__':
-    main()
