@@ -4,6 +4,10 @@ import Slide
 import Print
 import random
 
+import copy
+
+from gaSlideShow import run
+
 photos = []
 
 def shuffling(slides):
@@ -12,6 +16,7 @@ def shuffling(slides):
 
 def main():
     photos = Read.read("data/b_lovely_landscapes.txt")
+    #photos = Read.read("data/a_example.txt")
     Slide.photo_array = photos
     slides = []
     slideV = []
@@ -29,9 +34,11 @@ def main():
 
     population = [slides]
 
-    for i in range(50):
-        population.append(shuffling(slides))
+    for i in range(10):
+        population.append(shuffling(copy.deepcopy(slides)))
         print(Score.score(population[-1]))
+
+    run(population)
 
 
 if __name__ == '__main__':

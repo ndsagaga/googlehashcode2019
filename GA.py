@@ -30,13 +30,22 @@ NBR_ITEMS = 20
 
 # Create the item dictionary: item name is an integer, and value is
 # a (weight, value) 2-uple.
+
+
 items = {}
+
+
 # Create random items and store them in the items' dictionary.
 for i in range(NBR_ITEMS):
     items[i] = (random.randint(1, 10), random.uniform(0, 100))
 
 creator.create("Fitness", base.Fitness, weights=(-1.0, 1.0))
+
+
+
 creator.create("Individual", set, fitness=creator.Fitness)
+
+
 
 toolbox = base.Toolbox()
 
@@ -68,6 +77,7 @@ def cxSet(ind1, ind2):
     intersection of the two sets, the second child is the difference of the
     two sets.
     """
+
     temp = set(ind1)  # Used in order to keep type
     ind1 &= ind2  # Intersection (inplace)
     ind2 ^= temp  # Symmetric Difference (inplace)
@@ -90,14 +100,20 @@ toolbox.register("mutate", mutSet)
 toolbox.register("select", tools.selNSGA2)
 
 
+
+
+
 def main():
-    NGEN = 50
+    NGEN = 100
     MU = 50
     LAMBDA = 100
     CXPB = 0.7
     MUTPB = 0.2
 
     pop = toolbox.population(n=MU)
+
+
+
     hof = tools.ParetoFront()
     stats = tools.Statistics(lambda ind: ind.fitness.values)
     stats.register("avg", numpy.mean, axis=0)
